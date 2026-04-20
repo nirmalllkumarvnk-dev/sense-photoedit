@@ -1,0 +1,57 @@
+type UpdateProjectInput = 
+ record {
+   canvasJson: text;
+   height: nat;
+   id: ProjectId;
+   imageRefs: vec text;
+   layers: vec LayerData;
+   name: text;
+   width: nat;
+ };
+type Timestamp = int;
+type ProjectSummary = 
+ record {
+   createdAt: Timestamp;
+   height: nat;
+   id: ProjectId;
+   name: text;
+   updatedAt: Timestamp;
+   width: nat;
+ };
+type ProjectId = nat;
+type Project = 
+ record {
+   canvasJson: text;
+   createdAt: Timestamp;
+   height: nat;
+   id: ProjectId;
+   imageRefs: vec text;
+   layers: vec LayerData;
+   name: text;
+   owner: principal;
+   updatedAt: Timestamp;
+   width: nat;
+ };
+type LayerData = 
+ record {
+   fabricJson: text;
+   id: nat;
+   name: text;
+   visible: bool;
+ };
+type CreateProjectInput = 
+ record {
+   canvasJson: text;
+   height: nat;
+   imageRefs: vec text;
+   layers: vec LayerData;
+   name: text;
+   width: nat;
+ };
+service : {
+  createProject: (input: CreateProjectInput) -> (ProjectId);
+  deleteProject: (id: ProjectId) -> (bool);
+  listProjects: () -> (vec ProjectSummary) query;
+  loadProject: (id: ProjectId) -> (opt Project) query;
+  saveProject: (input: UpdateProjectInput) -> (bool);
+}

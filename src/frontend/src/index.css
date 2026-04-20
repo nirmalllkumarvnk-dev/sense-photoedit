@@ -1,0 +1,350 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Geist Mono", monospace;
+    --font-body: "DM Sans", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --radius: 0.125rem;
+
+    /* ── Futuristic Space Palette ── */
+    --ps-bg: #0a0a1a; /* deep space black, main background */
+    --ps-panel: #0d0d25; /* slightly lighter panel background */
+    --ps-panel-header: #111130; /* panel header area */
+    --ps-menubar: #0b0b20; /* top menu bar */
+    --ps-canvas: #050510; /* darkest canvas area behind canvas */
+    --ps-accent: #00d4ff; /* neon cyan, primary accent */
+    --ps-accent2: #8b5cf6; /* neon purple, secondary accent */
+    --ps-accent3: #ff00ff; /* neon magenta, tertiary */
+    --ps-border: rgba(0, 212, 255, 0.2); /* subtle cyan border */
+    --ps-border-glow: rgba(0, 212, 255, 0.6); /* glowing cyan border */
+    --ps-text: #e0e8ff; /* light text */
+    --ps-text-muted: rgba(180, 190, 220, 0.6);
+    --ps-hover: rgba(0, 212, 255, 0.08);
+    --ps-active: rgba(0, 212, 255, 0.15);
+    --ps-glass: rgba(13, 13, 37, 0.85); /* glass panel */
+    --ps-tooltip: #0d0d25;
+
+    /* Backdrop blur for glass panels */
+    --ps-blur: blur(12px);
+
+    /* ── Tailwind semantic tokens (OKLCH) ── */
+    --background: 0.08 0.03 265;
+    --foreground: 0.92 0.04 230;
+    --card: 0.1 0.04 265;
+    --card-foreground: 0.92 0.04 230;
+    --popover: 0.1 0.04 265;
+    --popover-foreground: 0.92 0.04 230;
+
+    --primary: 0.78 0.18 210;
+    --primary-foreground: 0.08 0.03 265;
+
+    --secondary: 0.12 0.04 265;
+    --secondary-foreground: 0.85 0.04 230;
+    --muted: 0.15 0.04 265;
+    --muted-foreground: 0.6 0.04 240;
+
+    --accent: 0.65 0.22 295;
+    --accent-foreground: 0.08 0.03 265;
+
+    --destructive: 0.6 0.25 25;
+    --destructive-foreground: 0.975 0 0;
+
+    --border: 0.18 0.04 265;
+    --input: 0.12 0.04 265;
+    --ring: 0.78 0.18 210;
+
+    --chart-1: 0.78 0.18 210;
+    --chart-2: 0.65 0.22 295;
+    --chart-3: 0.7 0.2 330;
+    --chart-4: 0.6 0.2 280;
+    --chart-5: 0.65 0.25 50;
+
+    --sidebar: 0.1 0.04 265;
+    --sidebar-foreground: 0.92 0.04 230;
+    --sidebar-primary: 0.78 0.18 210;
+    --sidebar-primary-foreground: 0.08 0.03 265;
+    --sidebar-accent: 0.15 0.04 265;
+    --sidebar-accent-foreground: 0.85 0.04 230;
+    --sidebar-border: 0.18 0.04 265;
+    --sidebar-ring: 0.78 0.18 210;
+  }
+
+  .dark {
+    --background: 0.08 0.03 265;
+    --foreground: 0.92 0.04 230;
+    --card: 0.1 0.04 265;
+    --card-foreground: 0.92 0.04 230;
+    --popover: 0.1 0.04 265;
+    --popover-foreground: 0.92 0.04 230;
+
+    --primary: 0.78 0.18 210;
+    --primary-foreground: 0.08 0.03 265;
+
+    --secondary: 0.12 0.04 265;
+    --secondary-foreground: 0.85 0.04 230;
+    --muted: 0.15 0.04 265;
+    --muted-foreground: 0.6 0.04 240;
+
+    --accent: 0.65 0.22 295;
+    --accent-foreground: 0.08 0.03 265;
+
+    --destructive: 0.6 0.25 25;
+    --destructive-foreground: 0.975 0 0;
+
+    --border: 0.18 0.04 265;
+    --input: 0.12 0.04 265;
+    --ring: 0.78 0.18 210;
+
+    --chart-1: 0.78 0.18 210;
+    --chart-2: 0.65 0.22 295;
+    --chart-3: 0.7 0.2 330;
+    --chart-4: 0.6 0.2 280;
+    --chart-5: 0.65 0.25 50;
+
+    --sidebar: 0.1 0.04 265;
+    --sidebar-foreground: 0.92 0.04 230;
+    --sidebar-primary: 0.78 0.18 210;
+    --sidebar-primary-foreground: 0.08 0.03 265;
+    --sidebar-accent: 0.15 0.04 265;
+    --sidebar-accent-foreground: 0.85 0.04 230;
+    --sidebar-border: 0.18 0.04 265;
+    --sidebar-ring: 0.78 0.18 210;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background-color: var(--ps-bg);
+    color: var(--ps-text);
+  }
+}
+
+/* ── Keyframe Animations ── */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 4px rgba(0, 212, 255, 0.3), 0 0 8px rgba(0, 212, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.6), 0 0 20px rgba(0, 212, 255, 0.3),
+      0 0 40px rgba(0, 212, 255, 0.1);
+  }
+}
+
+@keyframes pulse-glow-text {
+  0%,
+  100% {
+    text-shadow: 0 0 6px rgba(0, 212, 255, 0.5), 0 0 12px
+      rgba(0, 212, 255, 0.25);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.9), 0 0 20px
+      rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.2);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Font Faces ── */
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ── Scrollbar Styling: dark track, neon cyan thumb ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ps-bg);
+  border-left: 1px solid var(--ps-border);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.35);
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(0, 212, 255, 0.4);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.65);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+}
+::-webkit-scrollbar-corner {
+  background: var(--ps-bg);
+}
+
+/* ── Canvas Background: dot-grid pattern ── */
+.ps-canvas-area {
+  background-color: var(--ps-canvas);
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 212, 255, 0.12) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+  position: relative;
+}
+.ps-canvas-area::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(0, 212, 255, 0.03) 1px,
+      transparent 1px
+    ), linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@layer utilities {
+  /* ── Base Transition ── */
+  .transition-smooth {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ── Neon Glow Utilities ── */
+
+  /* Text glow: neon cyan */
+  .neon-glow {
+    text-shadow: 0 0 6px rgba(0, 212, 255, 0.7), 0 0 12px rgba(0, 212, 255, 0.4),
+      0 0 24px rgba(0, 212, 255, 0.2);
+  }
+
+  /* Panel border + ambient glow */
+  .panel-glow {
+    box-shadow: 0 0 0 1px var(--ps-border), 0 0 12px rgba(0, 212, 255, 0.12),
+      inset 0 1px 0 rgba(0, 212, 255, 0.06);
+  }
+
+  /* Active/selected element glow */
+  .active-glow {
+    box-shadow: 0 0 0 1px var(--ps-accent), 0 0 8px rgba(0, 212, 255, 0.45), 0 0
+      20px rgba(0, 212, 255, 0.2);
+  }
+
+  /* Button hover glow */
+  .btn-glow {
+    box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.4), 0 0 10px
+      rgba(0, 212, 255, 0.25), 0 0 24px rgba(0, 212, 255, 0.1);
+  }
+
+  /* Pulsing glow animation class */
+  .animate-pulse-glow {
+    animation: pulse-glow 2.5s ease-in-out infinite;
+  }
+  .animate-pulse-glow-text {
+    animation: pulse-glow-text 2.5s ease-in-out infinite;
+  }
+
+  /* Glass panel effect */
+  .glass-panel {
+    background: var(--ps-glass);
+    backdrop-filter: var(--ps-blur);
+    -webkit-backdrop-filter: var(--ps-blur);
+    border: 1px solid var(--ps-border);
+  }
+
+  /* ── Photoshop-style toolbar button (space-themed) ──
+     Dark bg, subtle cyan border on hover, neon glow on active */
+  .ps-toolbar-btn {
+    background: transparent;
+    color: var(--ps-text);
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 6px 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    position: relative;
+  }
+  .ps-toolbar-btn:hover {
+    background: var(--ps-hover);
+    border-color: var(--ps-border);
+    color: var(--ps-accent);
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+  }
+  .ps-toolbar-btn:active,
+  .ps-toolbar-btn.active {
+    background: var(--ps-active);
+    border-color: rgba(0, 212, 255, 0.5);
+    color: var(--ps-accent);
+    box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.4), 0 0 8px rgba(0, 212, 255, 0.3),
+      inset 0 0 8px rgba(0, 212, 255, 0.05);
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+  }
+  .ps-toolbar-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.5);
+  }
+
+  /* ── Panel header: cyan accent text, bottom border glow ── */
+  .ps-panel-header {
+    padding: 6px 12px;
+    background: var(--ps-panel-header);
+    border-bottom: 1px solid var(--ps-border);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ps-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.45);
+    box-shadow: 0 1px 0 rgba(0, 212, 255, 0.15);
+  }
+
+  /* ── Divider: subtle cyan tinted ── */
+  .ps-divider {
+    border-bottom: 1px solid var(--ps-border);
+    box-shadow: 0 1px 0 rgba(0, 212, 255, 0.04);
+  }
+
+  /* ── Label: muted space text ── */
+  .ps-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--ps-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+}

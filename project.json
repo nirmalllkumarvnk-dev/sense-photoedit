@@ -1,0 +1,28 @@
+{
+  "overview": "Sense PhotoEdit is a full-stack browser-based image editor that replicates the Adobe Photoshop experience. It features a pixel-perfect dark UI with toolbars, panels, canvas editing via Fabric.js, layer management, filters, undo/redo, and project save/load with user authentication.",
+  "features": [
+    "Photoshop-style dark UI with top menu bar, left toolbar, and right panels",
+    "Fabric.js canvas with brush, eraser, text, shapes, move, and zoom tools",
+    "Layer management: add, delete, hide/show, and rename layers",
+    "Color picker with RGB sliders and gradient box",
+    "Image filters: grayscale, blur, brightness and contrast",
+    "Undo/Redo history for all canvas actions",
+    "Upload images onto the canvas",
+    "Export canvas as PNG or JPG",
+    "Save and load projects from backend storage",
+    "User authentication with Internet Identity",
+    "Startup welcome modal like Photoshop"
+  ],
+  "category": "creative-tools",
+  "tags": [
+    "photo-editing",
+    "canvas",
+    "image-editor",
+    "photoshop",
+    "fabric-js",
+    "layers",
+    "drawing",
+    "filters"
+  ],
+  "last_updated": "2026-04-20T04:36:52.717Z"
+}

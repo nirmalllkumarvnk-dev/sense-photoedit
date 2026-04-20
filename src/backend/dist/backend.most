@@ -1,0 +1,37 @@
+// Version: 1.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type LayerData__317009920 =
+  {fabricJson : Text; id : Nat; name : Text; visible : Bool};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type ProjectId__478417951 = Nat;
+type ProjectId__661817938 = ProjectId__478417951;
+type Project__614212307 =
+  {
+    canvasJson : Text;
+    createdAt : Timestamp__624602616;
+    height : Nat;
+    id : ProjectId__661817938;
+    imageRefs : [Text];
+    layers : [LayerData__317009920];
+    name : Text;
+    owner : Principal;
+    updatedAt : Timestamp__624602616;
+    width : Nat
+  };
+type Timestamp__301639476 = Int;
+type Timestamp__624602616 = Timestamp__301639476;
+actor {
+  stable idCounter : {var value : Nat};
+  stable projectStore :
+    {
+      var root : Node__46230540<ProjectId__661817938, Project__614212307>;
+      var size : Nat__490723111
+    }
+};
